@@ -7,7 +7,5 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'loginApp';
-  hola(evento){
-    alert("hello world")
-  }
+
 }
