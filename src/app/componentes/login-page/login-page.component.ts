@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
+import { AuthService } from 'src/app/servicios/auth.service';
+import { Router } from '@angular/router';
+import { EventEmitter } from 'events';
 
 @Component({
   selector: 'app-login-page',
@@ -7,9 +10,29 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginPageComponent implements OnInit {
 
-  constructor() { }
+  email: string;
+  password: string;
+  error:string;
+
+  @Output() isLoggued = new EventEmitter();
+
+   constructor(private authLogin: AuthService, private router: Router) { }
 
   ngOnInit() {
   }
+
+  onSubmitLogin() {
+
+    this.authLogin.loginEmail(this.email, this.password).then(
+      (resp) => {
+        this.isLoggued.emit("logged");
+        console.log(this.isLoggued)
+        this.router.navigate(["privado"])
+
+      }).catch((error)=>{
+        this.error = error.message
+      })
+
+    }
 
 }
