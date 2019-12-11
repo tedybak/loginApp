@@ -2,6 +2,7 @@ import { Component, OnInit, Output } from '@angular/core';
 import { AuthService } from 'src/app/servicios/auth.service';
 import { Router } from '@angular/router';
 import { EventEmitter } from 'events';
+import { FlashMessagesService } from 'angular2-flash-messages';
 
 @Component({
   selector: 'app-login-page',
@@ -14,9 +15,8 @@ export class LoginPageComponent implements OnInit {
   password: string;
   error:string;
 
-  @Output() isLoggued = new EventEmitter();
 
-   constructor(private authLogin: AuthService, private router: Router) { }
+   constructor(private authLogin: AuthService, private router: Router, private flashMessageService:FlashMessagesService) { }
 
   ngOnInit() {
   }
@@ -25,8 +25,8 @@ export class LoginPageComponent implements OnInit {
 
     this.authLogin.loginEmail(this.email, this.password).then(
       (resp) => {
-        this.isLoggued.emit("logged");
-        console.log(this.isLoggued)
+        this.flashMessageService.show('se ha logueado con exito', { cssClass: 'alert-success', timeout: 5000 });
+
         this.router.navigate(["privado"])
 
       }).catch((error)=>{
