@@ -23,6 +23,9 @@
       <li class="nav-item  ">
         <a class="nav-link" (click)="logout()" *ngIf='isLogin'>Salir {{nomberUsuario}}</a>
       </li>
+      <li>
+        <img src={{fotoPerfil}} width="50px" *ngIf="isLogin">
+      </li>
 
     </ul>
   </div>

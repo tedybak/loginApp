@@ -34,5 +34,24 @@ export class LoginPageComponent implements OnInit {
       })
 
     }
+    doLoginFacebook(){
+      this.authLogin.loginWithFacebook().then((resp) => {
+        this.router.navigate(['privado'])
+      }).catch((error) => {
+        console.log(error)
+      })
+    }
+    doLoginGoogle(){
+      this.authLogin.loginWithGoogle().then((resp) => {
+        this.router.navigate(['privado'])
+      }).catch((error) => {
+        this.flashMessageService.show(error.dh, { cssClass: 'alert-success', timeout: 5000 });
+      })
+    }
+
+
+    doLoginTwitter(){
+      alert("haciendo login con Twitter")
+    }
 
 }
