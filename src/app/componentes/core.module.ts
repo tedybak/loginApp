@@ -14,6 +14,7 @@ import { LoginPageComponent } from './login-page/login-page.component';
 import { PrivadoPageComponent } from './privado-page/privado-page.component';
 import { NotFoundPageComponent } from './not-found-page/not-found-page.component';
 import { MainComponent } from './main.component';
+import { LoginGuardGuard } from '../guard/login-guard.guard';
 
 
 @NgModule({
@@ -32,7 +33,7 @@ import { MainComponent } from './main.component';
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebaseConfig)
   ],
-  providers: [AuthService, AngularFireAuth],
+  providers: [AuthService, AngularFireAuth,LoginGuardGuard],
   exports:[MainComponent]
 })
 export class CoreModule {}

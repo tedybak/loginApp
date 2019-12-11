@@ -5,13 +5,14 @@ import { LoginPageComponent } from "./componentes/login-page/login-page.componen
 import { RegisterPageComponent } from "./componentes/register-page/register-page.component";
 import { NotFoundPageComponent } from "./componentes/not-found-page/not-found-page.component";
 import { PrivadoPageComponent } from './componentes/privado-page/privado-page.component';
+import { LoginGuardGuard } from './guard/login-guard.guard';
 
 const routes: Routes = [
   { path: "", redirectTo: "/home", pathMatch: "full" },
   { path: "login", component: LoginPageComponent },
   { path: "home", component: HomePageComponent },
   { path: "registrarse", component: RegisterPageComponent },
-  { path: "privado", component: PrivadoPageComponent },
+  { path: "privado", component: PrivadoPageComponent, canActivate:[LoginGuardGuard] },
   { path: "**", component: NotFoundPageComponent }
 ];
 
